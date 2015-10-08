@@ -1,169 +1,121 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TableRex
-{
-    // List of all the function names
-    enum Functions
-    {
-        greater_than = 0,
-        less_than = 1,
-        equal = 2,
-        addition = 3,
-        subtraction = 4,
-        multiplication = 5,
-        division = 6,
-        absolute_value = 7,
-        and = 8,
-        or = 9,
-        not = 10,
-        generate_constant = 11,
-        modulo = 12,
-        random_float = 13,
-        normalize_relative_angle = 14,
-        control_actuator = 15
-    };
+namespace Aladaris {
 
-    public class TableRex
-    {
-        private const uint NROWS = 8; // Number of Rows on the table
-        private int[] table = new int[NROWS];
-        public string binaryString
-        {
-            get
-            {
-                binaryString = "";
-                for (int i = 0; i < table.Length; i++)
-                    binaryString += IntToBinaryString(table[i], 18);
-                return binaryString;
+    public class TableRex {
+        // Class that represent each row of a TableRex table
+        public class Row {
+
+            private int _funct;
+            private int _p1;
+            private int _p2;
+
+            public int function {  // 16  - 2^4 - 4 bits
+                get { return _funct; }
+                set {
+                    if ((value > 15))
+                        _funct = 15;
+                    else if (value >= 0)
+                        _funct = value;
+                    else
+                        _funct = 0;
+                }
+
             }
-            set
-            {
-                binaryString = value;
+            public int param1 {    // 128 - 2^7 - 7 bits
+                get {return _p1;}
+                set {
+                    if (value > 127)
+                        _p1 = 127;
+                    else if (value >= 0)
+                        _p1 = value;
+                    else
+                        _p1 = 0;
+                }
+                
+            }
+            public int param2 {    // 128 - 2^7 - 7 bits
+                get {return _p2;}
+                set {
+                    if (value > 127)
+                        _p2 = 127;
+                    else if (value >= 0)
+                        _p2 = value;
+                    else
+                        _p1 = 0;
+                }
+                
+            }
+            public double output;
+
+            // Default builder
+            public Row() {
+                function = param1 = param2 = 0;
+                output = 0.0;
+            }
+            // Parametric builder
+            public Row(int f, int p1, int p2, int o) {
+                function = f;
+                param1 = p1;
+                param2 = p2;
+                output = o;
+            }
+            // Parametric builder
+            public Row(int f, int p1, int p2) {
+                function = f;
+                param1 = p1;
+                param2 = p2;
+                output = 0;
+            }
+
+        }
+
+        // Base table structure, just an array of 'Row' objects
+        private Row[] tabla;
+
+        // Default builder
+        public TableRex() {
+            tabla = new Row[TableRexBase.NROWS];
+            //trPointer = 0;
+        }
+        // Parametric builder
+        public TableRex(string rawBinaryString) {
+            tabla = new Row[TableRexBase.NROWS];
+            //trPointer = 0;
+            ParseRawBinaryData(rawBinaryString);
+        }
+        // Parse a RAW binary string, containning all the TableRex program, into the table.
+        private void ParseRawBinaryData(string rawBinaryString) {
+            Console.WriteLine(rawBinaryString);  // DEBUG
+
+            rawBinaryString = rawBinaryString.Trim(char.Parse(TableRexBase.SEPARATOR));
+            string[] rows = rawBinaryString.Split(char.Parse(TableRexBase.SEPARATOR));
+            for (int i = 0; i < rows.Length + TableRexBase.NINPUTS; i++) {
+                if (i < TableRexBase.NINPUTS)  // First NINPUTS rows are inputs
+                    tabla[i] = new Row(0, 0, 0, 0);
+                else {
+                    // Comprobación de funcionamiento: http://ideone.com/QLkJfu
+                    int funct = Support.BinaryStringToInt(rows[i - TableRexBase.NINPUTS].Substring(0, TableRexBase.BFUNCTIONSIZE));
+                    int p1 = Support.BinaryStringToInt(rows[i - TableRexBase.NINPUTS].Substring(4, TableRexBase.BPARAMETERSIZE));
+                    int p2 = Support.BinaryStringToInt(rows[i - TableRexBase.NINPUTS].Substring(11, TableRexBase.BPARAMETERSIZE));
+                    tabla[i] = new Row(funct, p1, p2);
+                }
             }
         }
 
-        public TableRex()
-        {
-            for (int i = 0; i < table.Length; i++)
-                table[i] = 666;
+        // [] operator overload
+        public TableRex.Row this[int i] {
+            get { return tabla[i]; }
+            set { tabla[i] = value; }
         }
 
-        // Returns a string representating the binary form of X at a fixed size (filled with zeros at left)
-        private string IntToBinaryString(int x, int size) // TODO: Poner en un fichero AUX o UTILS o algo así
-        {
-            char[] bits = new char[size];
-            int i = 0;
-
-            while (i < size)
-            {
-                if (x != 0)
-                {
-                    bits[i++] = (x & 1) == 1 ? '1' : '0';
-                    x >>= 1;
-                }
-                else
-                {
-                    bits[i++] = '0';
-                }
-            }
-
-            Array.Reverse(bits, 0, i);
-            return new string(bits);
+        // Table's Lenght
+        public int Lenght {
+            get { return tabla.Length; }
         }
 
     }
-/*
-    class TRrow
-    {
-        public int function;
-        public int input1;
-        public int input2;
-        public int output;
-
-        public TRrow(int f, int in1, int in2, int o)
-        {
-            function = f;
-            input1 = in1;
-            input2 = in2;
-            output = o;
-        }
-    }
-
-    class TableRex
-    {
-        private const uint NROWS = 8; // Number of Rows on the table
-        private TRrow[] table = new TRrow[NROWS];
-        
-        public string binaryString
-        {
-            get
-            {
-                return binaryString;
-            }
-            set
-            {
-                binaryString = value;
-            }
-        }
-
-        public static string Separator = " "; // Separator between lines of the table
-
-        // Default Constructor: Generate a random TableRex
-        public TableRex()
-        {
-            //Random rand = new Random(DateTime.Now.Millisecond + DateTime.Now.Second);
-            for (uint i = 0; i < NROWS; i++)
-            {
-                //table[i] = new TRrow(rand.Next(16), rand.Next(108), rand.Next(108), 0);
-                table[i] = new TRrow(16, 108, 108, 0);
-            }
-            SetBinaryString();
-        }
-
-        // Returns the binary String with all the table data
-        public void SetBinaryString ()
-        {
-            binaryString = "";
-            for (uint i = 0; i < NROWS; i++)
-            {
-                string fila = IntToBinaryString(table[i].function, 4);
-                fila += IntToBinaryString(table[i].input1, 7);
-                fila += IntToBinaryString(table[i].input2, 7);
-                binaryString += fila + Separator;
-            }
-        }
-        
-
-
-
-
-        // Returns a string representating the binary form of X at a fixed size (filled with zeros at left)
-        public string IntToBinaryString(int x, int size) // TODO: Poner en un fichero AUX o UTILS o algo así
-        {
-            char[] bits = new char[size];
-            int i = 0;
-
-            while (i < size)
-            {
-                if (x != 0)
-                {
-                    bits[i++] = (x & 1) == 1 ? '1' : '0';
-                    x >>= 1;
-                }
-                else
-                {
-                    bits[i++] = '0';
-                }
-            }
-
-            Array.Reverse(bits, 0, i);
-            return new string(bits);
-        }
-
-    }
- */
 }

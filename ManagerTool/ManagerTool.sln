@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eisenbots", "Eisenbots\Eisenbots.csproj", "{2CA7C99B-9B69-4328-BB3F-294AB46FF849}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerTool", "..\ManagerTool\ManagerTool\ManagerTool.csproj", "{D145BE1B-0335-4F47-98B0-F48D451EB16E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerTool", "ManagerTool\ManagerTool.csproj", "{D145BE1B-0335-4F47-98B0-F48D451EB16E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CA7C99B-9B69-4328-BB3F-294AB46FF849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CA7C99B-9B69-4328-BB3F-294AB46FF849}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CA7C99B-9B69-4328-BB3F-294AB46FF849}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CA7C99B-9B69-4328-BB3F-294AB46FF849}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D145BE1B-0335-4F47-98B0-F48D451EB16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D145BE1B-0335-4F47-98B0-F48D451EB16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D145BE1B-0335-4F47-98B0-F48D451EB16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
