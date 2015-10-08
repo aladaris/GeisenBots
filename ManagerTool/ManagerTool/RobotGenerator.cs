@@ -2,7 +2,7 @@
 
 namespace ManagerTool {
     class RobotGenerator {
-        // TODO: Dejar de ser const y permitir edición mediante GUI??  => Overdoing?
+
         private const byte NINPUTS = 20;
         private const byte NROWS = 128 - NINPUTS;
         private const byte BFUNCTIONSIZE = 4;
@@ -11,8 +11,9 @@ namespace ManagerTool {
         private const byte NPROGRAMS = 5;
         private const char SEPARATOR = ';';
         private const char TSEPARATOR = '|';
-        //private const string FILEEXTENSION = "rxt";
         private Random _rand;
+
+        public const string FILEEXTENSION = "rxt";
 
         public RobotGenerator() {
             _rand = new Random((int)DateTime.Now.ToBinary());
