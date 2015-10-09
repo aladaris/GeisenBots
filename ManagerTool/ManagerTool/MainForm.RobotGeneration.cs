@@ -14,6 +14,8 @@ using System.IO;
 namespace ManagerTool {
     public partial class MainForm : Form {
 
+        private RobotGenerator _robotGen;
+
         #region Background worker job
 		/// <summary>
 		/// A Background worker 'DoWork' function.
@@ -70,6 +72,13 @@ namespace ManagerTool {
         private void BackGround_RobotGenerationCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
             button_rgStart.Enabled = true;
             groupBox_rgParameters.Enabled = true;
+            if (e.Cancelled) {
+                label_rgProgressStatus.Text = "Robot Creation: Cancelled";
+            } else if (e.Error != null) {
+                label_rgProgressStatus.Text = "Robot Creation: Error. Thread aborted";
+            } else {
+                label_rgProgressStatus.Text = "Robot Creation: Success";
+            }
         }
         #endregion
 

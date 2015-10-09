@@ -14,7 +14,6 @@ using System.Configuration;
 namespace ManagerTool {
     public partial class MainForm : Form {
 
-        private RobotGenerator _robotGen;
         private BackgroundWorker _bgWorkerRG = new BackgroundWorker();
 
         public MainForm() {
@@ -32,6 +31,7 @@ namespace ManagerTool {
             numericUpDown_rgRobotCount.Value = Convert.ToDecimal(ConfigurationManager.AppSettings["rgRobotCount"]);
             textBox_rgBaseFileName.Text = ConfigurationManager.AppSettings["rgBaseFileName"];
             textBox_rgOutDir.Text = ConfigurationManager.AppSettings["rgOutDir"];
+
         }
 
         /// <summary>
@@ -48,6 +48,17 @@ namespace ManagerTool {
 
         private void MainForm_Load(object sender, EventArgs e) {
             LoadAppConfigValues();
+            // DEBUG
+            var st = new RobotGenerationStorage("Storage 1", 1);
+            for (uint i = 0; i < 100; i++) {
+                BattleResultsSerializble br = new BattleResultsSerializble();
+                br.BulletDamage = 500 + (int)i;
+                RobotEntry re = new RobotEntry(i, "Robots", br);
+                st.Robots.Add(re);
+            }
+            
+            Console.Write(Serializers.Serialize(st));
+            // DEBUG
         }
 
     }
