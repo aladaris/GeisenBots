@@ -19,6 +19,7 @@ namespace ManagerTool {
 
         public MainForm() {
             InitializeComponent();
+            toolStripStatusLabel_DataBase.Image = Properties.Resources.db_fail;  // NOTE: This hould be inside "InitializeComponent()", but the designer crashes ... "global::ManagerTool.Properties.Resources.db_fail"
             // Background worker Robot Generation
             _bgWorkerRG.DoWork += BackGround_GenerateRobotPrograms;
             _bgWorkerRG.ProgressChanged += BackGround_RobotGenerationProgressUpdate;
@@ -46,33 +47,8 @@ namespace ManagerTool {
 
         }
 
-        /// <summary>
-        /// Updates the value of a given parameter in the App.config
-        /// </summary>
-        /// <param name="key">Parameter key/name</param>
-        /// <param name="value">New value to assign</param>
-        private void SaveAppConfigKeyValue(string key, string value) {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings[key].Value = value;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-        }
-
         private void MainForm_Load(object sender, EventArgs e) {
             LoadAppConfigValues();
-            // DEBUG
-            /*
-            var st = new RobotGenerationStorage("Storage 1", 1);
-            for (uint i = 0; i < 100; i++) {
-                BattleResultsSerializble br = new BattleResultsSerializble();
-                br.BulletDamage = 500 + (int)i;
-                RobotEntry re = new RobotEntry(i, "Robots", br);
-                st.Robots.Add(re);
-            }
-            
-            Console.Write(Serializers.Serialize(st));
-            */
-            // DEBUG
         }
     }
 }

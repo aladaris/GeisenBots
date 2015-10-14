@@ -56,6 +56,8 @@
             this.textBox_DbBName = new System.Windows.Forms.TextBox();
             this.numericUpDown_DbBGeneration = new System.Windows.Forms.NumericUpDown();
             this.checkBox_DbBUseOutputDir = new System.Windows.Forms.CheckBox();
+            this.label_DbBSaveAs = new System.Windows.Forms.Label();
+            this.textBox_DbBSaveAs = new System.Windows.Forms.TextBox();
             this.button_DbBBuild = new System.Windows.Forms.Button();
             this.progressBar_DbBBuildProgress = new System.Windows.Forms.ProgressBar();
             this.label_DbBProgressStatus = new System.Windows.Forms.Label();
@@ -110,7 +112,7 @@
             this.splitContainer_Base.Panel2.Controls.Add(this.statusStrip_Main);
             this.splitContainer_Base.Panel2MinSize = 20;
             this.splitContainer_Base.Size = new System.Drawing.Size(984, 611);
-            this.splitContainer_Base.SplitterDistance = 575;
+            this.splitContainer_Base.SplitterDistance = 585;
             this.splitContainer_Base.SplitterWidth = 1;
             this.splitContainer_Base.TabIndex = 1;
             // 
@@ -124,7 +126,7 @@
             this.tabControl_Main.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
-            this.tabControl_Main.Size = new System.Drawing.Size(984, 575);
+            this.tabControl_Main.Size = new System.Drawing.Size(984, 585);
             this.tabControl_Main.TabIndex = 0;
             // 
             // tabPage_robotManagement
@@ -133,7 +135,7 @@
             this.tabPage_robotManagement.Location = new System.Drawing.Point(4, 22);
             this.tabPage_robotManagement.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage_robotManagement.Name = "tabPage_robotManagement";
-            this.tabPage_robotManagement.Size = new System.Drawing.Size(976, 549);
+            this.tabPage_robotManagement.Size = new System.Drawing.Size(976, 559);
             this.tabPage_robotManagement.TabIndex = 0;
             this.tabPage_robotManagement.Text = "Robot Management";
             // 
@@ -153,7 +155,7 @@
             this.tableLayoutPanel_Main3Cols.Name = "tableLayoutPanel_Main3Cols";
             this.tableLayoutPanel_Main3Cols.RowCount = 1;
             this.tableLayoutPanel_Main3Cols.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Main3Cols.Size = new System.Drawing.Size(976, 549);
+            this.tableLayoutPanel_Main3Cols.Size = new System.Drawing.Size(976, 559);
             this.tableLayoutPanel_Main3Cols.TabIndex = 4;
             // 
             // tableLayoutPanel1
@@ -168,7 +170,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 547);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 557);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label2
@@ -198,18 +200,18 @@
             this.tableLayoutPanel_RobotGeneration.Name = "tableLayoutPanel_RobotGeneration";
             this.tableLayoutPanel_RobotGeneration.RowCount = 6;
             this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_RobotGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_RobotGeneration.Size = new System.Drawing.Size(324, 547);
+            this.tableLayoutPanel_RobotGeneration.Size = new System.Drawing.Size(324, 557);
             this.tableLayoutPanel_RobotGeneration.TabIndex = 0;
             // 
             // label_rgProgressStatus
             // 
             this.label_rgProgressStatus.AutoSize = true;
-            this.label_rgProgressStatus.Location = new System.Drawing.Point(3, 265);
+            this.label_rgProgressStatus.Location = new System.Drawing.Point(3, 275);
             this.label_rgProgressStatus.Name = "label_rgProgressStatus";
             this.label_rgProgressStatus.Size = new System.Drawing.Size(0, 13);
             this.label_rgProgressStatus.TabIndex = 5;
@@ -217,7 +219,7 @@
             // progressBar_rgGenerate
             // 
             this.progressBar_rgGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar_rgGenerate.Location = new System.Drawing.Point(3, 223);
+            this.progressBar_rgGenerate.Location = new System.Drawing.Point(3, 233);
             this.progressBar_rgGenerate.Name = "progressBar_rgGenerate";
             this.progressBar_rgGenerate.Size = new System.Drawing.Size(318, 39);
             this.progressBar_rgGenerate.TabIndex = 4;
@@ -225,7 +227,7 @@
             // button_rgStart
             // 
             this.button_rgStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_rgStart.Location = new System.Drawing.Point(3, 178);
+            this.button_rgStart.Location = new System.Drawing.Point(3, 188);
             this.button_rgStart.Name = "button_rgStart";
             this.button_rgStart.Size = new System.Drawing.Size(318, 39);
             this.button_rgStart.TabIndex = 3;
@@ -239,7 +241,7 @@
             this.groupBox_rgParameters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_rgParameters.Location = new System.Drawing.Point(3, 38);
             this.groupBox_rgParameters.Name = "groupBox_rgParameters";
-            this.groupBox_rgParameters.Size = new System.Drawing.Size(318, 134);
+            this.groupBox_rgParameters.Size = new System.Drawing.Size(318, 144);
             this.groupBox_rgParameters.TabIndex = 2;
             this.groupBox_rgParameters.TabStop = false;
             this.groupBox_rgParameters.Text = "Parameters";
@@ -276,6 +278,7 @@
             this.textBox_rgOutDir.Name = "textBox_rgOutDir";
             this.textBox_rgOutDir.Size = new System.Drawing.Size(247, 20);
             this.textBox_rgOutDir.TabIndex = 7;
+            this.textBox_rgOutDir.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_rgOutDir_MouseClick);
             this.textBox_rgOutDir.TextChanged += new System.EventHandler(this.textBox_rgOutDir_TextChanged);
             // 
             // textBox_rgBaseFileName
@@ -391,12 +394,12 @@
             this.tableLayoutPanel_DataBaseGeneration.Name = "tableLayoutPanel_DataBaseGeneration";
             this.tableLayoutPanel_DataBaseGeneration.RowCount = 6;
             this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_DataBaseGeneration.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_DataBaseGeneration.Size = new System.Drawing.Size(324, 547);
+            this.tableLayoutPanel_DataBaseGeneration.Size = new System.Drawing.Size(324, 557);
             this.tableLayoutPanel_DataBaseGeneration.TabIndex = 1;
             // 
             // label1
@@ -417,7 +420,7 @@
             this.groupBox_DbBParams.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_DbBParams.Location = new System.Drawing.Point(3, 38);
             this.groupBox_DbBParams.Name = "groupBox_DbBParams";
-            this.groupBox_DbBParams.Size = new System.Drawing.Size(318, 134);
+            this.groupBox_DbBParams.Size = new System.Drawing.Size(318, 144);
             this.groupBox_DbBParams.TabIndex = 8;
             this.groupBox_DbBParams.TabStop = false;
             this.groupBox_DbBParams.Text = "Parameters";
@@ -434,17 +437,19 @@
             this.tableLayoutPanel2.Controls.Add(this.textBox_DbBName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.numericUpDown_DbBGeneration, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.checkBox_DbBUseOutputDir, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label_DbBSaveAs, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.textBox_DbBSaveAs, 1, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 101);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 128);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // textBox_DbBRobotDir
@@ -454,6 +459,7 @@
             this.textBox_DbBRobotDir.Name = "textBox_DbBRobotDir";
             this.textBox_DbBRobotDir.Size = new System.Drawing.Size(239, 20);
             this.textBox_DbBRobotDir.TabIndex = 7;
+            this.textBox_DbBRobotDir.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_DbBRobotDir_MouseClick);
             this.textBox_DbBRobotDir.TextChanged += new System.EventHandler(this.textBox_DbBRobotDir_TextChanged);
             // 
             // label_DbBName
@@ -520,14 +526,35 @@
             this.checkBox_DbBUseOutputDir.Name = "checkBox_DbBUseOutputDir";
             this.checkBox_DbBUseOutputDir.Size = new System.Drawing.Size(239, 17);
             this.checkBox_DbBUseOutputDir.TabIndex = 9;
-            this.checkBox_DbBUseOutputDir.Text = "Use Robot Creation \"Output directory\"";
+            this.checkBox_DbBUseOutputDir.Text = "Use \"Robot Creation\" output directory";
             this.checkBox_DbBUseOutputDir.UseVisualStyleBackColor = true;
             this.checkBox_DbBUseOutputDir.CheckedChanged += new System.EventHandler(this.checkBox_DbBUseOutputDir_CheckedChanged);
+            // 
+            // label_DbBSaveAs
+            // 
+            this.label_DbBSaveAs.AutoSize = true;
+            this.label_DbBSaveAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_DbBSaveAs.Location = new System.Drawing.Point(3, 101);
+            this.label_DbBSaveAs.Name = "label_DbBSaveAs";
+            this.label_DbBSaveAs.Size = new System.Drawing.Size(61, 27);
+            this.label_DbBSaveAs.TabIndex = 10;
+            this.label_DbBSaveAs.Text = "Save as";
+            this.label_DbBSaveAs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox_DbBSaveAs
+            // 
+            this.textBox_DbBSaveAs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_DbBSaveAs.Location = new System.Drawing.Point(70, 104);
+            this.textBox_DbBSaveAs.Name = "textBox_DbBSaveAs";
+            this.textBox_DbBSaveAs.Size = new System.Drawing.Size(239, 20);
+            this.textBox_DbBSaveAs.TabIndex = 11;
+            this.textBox_DbBSaveAs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_DbBSaveAs_MouseClick);
+            this.textBox_DbBSaveAs.TextChanged += new System.EventHandler(this.textBox_DbBSaveAs_TextChanged);
             // 
             // button_DbBBuild
             // 
             this.button_DbBBuild.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_DbBBuild.Location = new System.Drawing.Point(3, 178);
+            this.button_DbBBuild.Location = new System.Drawing.Point(3, 188);
             this.button_DbBBuild.Name = "button_DbBBuild";
             this.button_DbBBuild.Size = new System.Drawing.Size(318, 39);
             this.button_DbBBuild.TabIndex = 9;
@@ -538,7 +565,7 @@
             // progressBar_DbBBuildProgress
             // 
             this.progressBar_DbBBuildProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar_DbBBuildProgress.Location = new System.Drawing.Point(3, 223);
+            this.progressBar_DbBBuildProgress.Location = new System.Drawing.Point(3, 233);
             this.progressBar_DbBBuildProgress.Name = "progressBar_DbBBuildProgress";
             this.progressBar_DbBBuildProgress.Size = new System.Drawing.Size(318, 39);
             this.progressBar_DbBBuildProgress.TabIndex = 10;
@@ -546,7 +573,7 @@
             // label_DbBProgressStatus
             // 
             this.label_DbBProgressStatus.AutoSize = true;
-            this.label_DbBProgressStatus.Location = new System.Drawing.Point(3, 265);
+            this.label_DbBProgressStatus.Location = new System.Drawing.Point(3, 275);
             this.label_DbBProgressStatus.Name = "label_DbBProgressStatus";
             this.label_DbBProgressStatus.Size = new System.Drawing.Size(0, 13);
             this.label_DbBProgressStatus.TabIndex = 11;
@@ -578,16 +605,15 @@
             this.toolStripStatusLabel_DataBase});
             this.statusStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.statusStrip_Main.Name = "statusStrip_Main";
-            this.statusStrip_Main.Size = new System.Drawing.Size(984, 35);
+            this.statusStrip_Main.Size = new System.Drawing.Size(984, 25);
             this.statusStrip_Main.TabIndex = 0;
             this.statusStrip_Main.Text = "statusStrip1";
             // 
             // toolStripStatusLabel_DataBase
             // 
-            this.toolStripStatusLabel_DataBase.Image = global::ManagerTool.Properties.Resources.db_fail;
             this.toolStripStatusLabel_DataBase.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripStatusLabel_DataBase.Name = "toolStripStatusLabel_DataBase";
-            this.toolStripStatusLabel_DataBase.Size = new System.Drawing.Size(120, 35);
+            this.toolStripStatusLabel_DataBase.Size = new System.Drawing.Size(104, 25);
             this.toolStripStatusLabel_DataBase.Text = "Database: - none -";
             // 
             // MainForm
@@ -596,6 +622,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.panel_BASE);
+            this.MinimumSize = new System.Drawing.Size(630, 490);
             this.Name = "MainForm";
             this.Text = "EisenRobots Manager [ERM]";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -670,6 +697,8 @@
         private System.Windows.Forms.SplitContainer splitContainer_Base;
         private System.Windows.Forms.StatusStrip statusStrip_Main;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_DataBase;
+        private System.Windows.Forms.Label label_DbBSaveAs;
+        private System.Windows.Forms.TextBox textBox_DbBSaveAs;
     }
 }
 

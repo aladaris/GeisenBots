@@ -61,16 +61,6 @@ namespace ManagerTool.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
-        /// </summary>
-        internal static System.Drawing.Icon db_accept {
-            get {
-                object obj = ResourceManager.GetObject("db_accept", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap db_fail {
@@ -87,16 +77,6 @@ namespace ManagerTool.Properties {
             get {
                 object obj = ResourceManager.GetObject("db_ok", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
-        /// </summary>
-        internal static System.Drawing.Icon db_remove {
-            get {
-                object obj = ResourceManager.GetObject("db_remove", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         

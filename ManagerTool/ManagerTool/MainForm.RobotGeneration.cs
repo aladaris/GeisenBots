@@ -89,7 +89,7 @@ namespace ManagerTool {
         private void textBox_rgSeed_TextChanged(object sender, EventArgs e) {
             var tb = (TextBox)sender;
             tb.Text = Regex.Replace(tb.Text, @"[^0-9]", String.Empty);
-            SaveAppConfigKeyValue("rgSeed", tb.Text);
+            AppConfigUtils.SaveAppConfigKeyValue("rgSeed", tb.Text);
             // Set the cursor back to the front of the string
             tb.SelectionStart = tb.Text.Length;
             tb.SelectionLength = 0;
@@ -97,15 +97,21 @@ namespace ManagerTool {
 
         private void numericUpDown_rgRobotCount_ValueChanged(object sender, EventArgs e) {
             var nud = (NumericUpDown)sender;
-            SaveAppConfigKeyValue("rgRobotCount", nud.Value.ToString());
+            AppConfigUtils.SaveAppConfigKeyValue("rgRobotCount", nud.Value.ToString());
         }
         private void textBox_rgBaseFileName_TextChanged(object sender, EventArgs e) {
             var tb = (TextBox)sender;
-            SaveAppConfigKeyValue("rgBaseFileName", tb.Text);
+            AppConfigUtils.SaveAppConfigKeyValue("rgBaseFileName", tb.Text);
         }
         private void textBox_rgOutDir_TextChanged(object sender, EventArgs e) {
             var tb = (TextBox)sender;
-            SaveAppConfigKeyValue("rgOutDir", tb.Text);
+            AppConfigUtils.SaveAppConfigKeyValue("rgOutDir", tb.Text);
+        }
+        /// <summary>
+        /// Robot Creation input RobotDir selection
+        /// </summary>
+        private void textBox_rgOutDir_MouseClick(object sender, MouseEventArgs e) {
+            GUIUtils.TextBoxClickFolderBrowserDialog(sender);
         }
         /// <summary>
         /// Start the robot generation proccess (CLICK)

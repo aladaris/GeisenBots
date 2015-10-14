@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.IO;
 
 
@@ -34,12 +29,18 @@ namespace ManagerTool {
             _workingRobotDatabase = new RobotGenerationStorage(textBox_DbBName.Text, (uint)numericUpDown_DbBGeneration.Value);
             for (int i = 0; i < dirFiles.Length; i++) {
                 //Console.WriteLine(dirFiles[i]);  // DEBUG
-                bgw.ReportProgress((i * 100)/dirFiles.Length);
+                bgw.ReportProgress((i * 99)/dirFiles.Length);
                 RobotEntry re = new RobotEntry((uint)i, dirFiles[i]);  // TODO: Que el ID se coja del nombre del fichero ??? Robot.id.rxt ???
                 _workingRobotDatabase.Robots.Add(re);
             }
 
             //Console.WriteLine(Serializers.Serialize(_workingRobotDatabase));  // DEBUG
+
+            // textBox_DbBSaveAs.Text.IndexOf(@"\", textBox_DbBSaveAs.Text.Length)
+            string pattern = @"^(.+){1}\\([^\\]+)$";
+            string baseFullPath = Regex.Match(textBox_DbBSaveAs.Text, pattern).Groups[1].Value;
+            baseFullPath = Directory.Exists(baseFullPath) ? textBox_DbBSaveAs.Text : textBox_DbBName.Text + '.' + RobotGenerationStorage.FILE_EXTENSION;
+            File.WriteAllText(baseFullPath, Serializers.Serialize(_workingRobotDatabase));
             bgw.ReportProgress(100);
         }
 
@@ -58,13 +59,13 @@ namespace ManagerTool {
             groupBox_DbBParams.Enabled = true;
             if ((e.Cancelled) || (_bgWorkerDbB.CancellationPending)) {
                 label_DbBProgressStatus.Text = "Database Build: Cancelled";
-                toolStripStatusLabel_DataBase.Image = (Bitmap)GetResourceObject("db_fail");
+                toolStripStatusLabel_DataBase.Image = Properties.Resources.db_fail;
             } else if (e.Error != null) {
                 label_DbBProgressStatus.Text = "Database Build: Error. Thread aborted";
-                toolStripStatusLabel_DataBase.Image = (Bitmap)GetResourceObject("db_fail");
+                toolStripStatusLabel_DataBase.Image = Properties.Resources.db_fail;
             } else {
                 label_DbBProgressStatus.Text = "Database Build: Success";
-                toolStripStatusLabel_DataBase.Image = (Bitmap)GetResourceObject("db_ok");
+                toolStripStatusLabel_DataBase.Image = Properties.Resources.db_ok;
                 toolStripStatusLabel_DataBase.Text = String.Format("Database: {0}", _workingRobotDatabase.Name);
             }
         }
@@ -74,38 +75,57 @@ namespace ManagerTool {
         private void checkBox_DbBUseOutputDir_CheckedChanged(object sender, EventArgs e) {
             var cb = (CheckBox)sender;
             textBox_DbBRobotDir.Enabled = !cb.Checked;
-            SaveAppConfigKeyValue("DbBUseOutPutDirChecked", cb.Checked.ToString());
+            AppConfigUtils.SaveAppConfigKeyValue("DbBUseOutPutDirChecked", cb.Checked.ToString());
         }
 
         private void textBox_DbBName_TextChanged(object sender, EventArgs e) {
             var tb = (TextBox)sender;
-            SaveAppConfigKeyValue("DbBName", tb.Text);
+            AppConfigUtils.SaveAppConfigKeyValue("DbBName", tb.Text);
         }
 
         private void textBox_DbBRobotDir_TextChanged(object sender, EventArgs e) {
             var tb = (TextBox)sender;
-            SaveAppConfigKeyValue("DbBRobotDir", tb.Text);
+            AppConfigUtils.SaveAppConfigKeyValue("DbBRobotDir", tb.Text);
+        }
+
+        /// <summary>
+        /// Robot Database Generation input RobotDir selection
+        /// </summary>
+        private void textBox_DbBRobotDir_MouseClick(object sender, MouseEventArgs e) {
+            GUIUtils.TextBoxClickFolderBrowserDialog(sender);
         }
 
         private void numericUpDown_DbBGeneration_ValueChanged(object sender, EventArgs e) {
             var nud = (NumericUpDown)sender;
-            SaveAppConfigKeyValue("DbBGeneration", nud.Value.ToString());
+            AppConfigUtils.SaveAppConfigKeyValue("DbBGeneration", nud.Value.ToString());
+        }
+
+        private void textBox_DbBSaveAs_TextChanged(object sender, EventArgs e) {
+            var tb = (TextBox)sender;
+            AppConfigUtils.SaveAppConfigKeyValue("DbBsaveAs", tb.Text);
+        }
+
+        /// <summary>
+        /// Robot DataBase Generation output file selection
+        /// </summary>
+        private void textBox_DbBSaveAs_MouseClick(object sender, MouseEventArgs e) {
+            var saveFileDiag = new SaveFileDialog();
+            saveFileDiag.Filter = String.Format("Robot Generation Database|*.{0}", RobotGenerationStorage.FILE_EXTENSION);
+            saveFileDiag.Title = "Save Robot Generation Database";
+            saveFileDiag.FileName = textBox_DbBName.Text;
+            saveFileDiag.ShowDialog();
+            var tb = (TextBox)sender;
+            tb.Text = saveFileDiag.FileName;
         }
 
         private void button_DbBBuild_Click(object sender, EventArgs e) {
             if (!_bgWorkerDbB.IsBusy) {
                 ((Button)sender).Enabled = false;
                 groupBox_DbBParams.Enabled = false;
-                toolStripStatusLabel_DataBase.Image = (Bitmap)GetResourceObject("db_search");
+                toolStripStatusLabel_DataBase.Image = Properties.Resources.db_search;
                 _bgWorkerDbB.RunWorkerAsync();
             }
         }
         #endregion
-
-        // TODO: Moverme de aquí !!!!!!!!!!!!
-        private Object GetResourceObject(string resource_name) {
-            var res = new System.Resources.ResourceManager("ManagerTool.Properties.Resources", System.Reflection.Assembly.GetExecutingAssembly());
-            return res.GetObject(resource_name);
-        }
     }
 }

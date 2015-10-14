@@ -5,6 +5,8 @@ using System.Text;
 namespace ManagerTool {
     [Serializable]
     public class RobotGenerationStorage {
+        public const string FILE_EXTENSION = "rgdb";
+
         public string Name { get; set; }
         public uint Generation { get; set; }
         public List<RobotEntry> Robots { get; set; }
