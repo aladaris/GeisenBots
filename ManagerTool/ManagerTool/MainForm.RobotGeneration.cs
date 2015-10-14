@@ -22,7 +22,7 @@ namespace ManagerTool {
         /// This method handles the generation of the robot program strings
         /// as individual output files (one per robot).
 		/// </summary>
-        private void GenerateRobotPrograms_BackGround(object sender, System.ComponentModel.DoWorkEventArgs e) {
+        private void BackGround_GenerateRobotPrograms(object sender, System.ComponentModel.DoWorkEventArgs e) {
 			// Robot count handling
             int count = (int)numericUpDown_rgRobotCount.Value;
             if (count <= 0)

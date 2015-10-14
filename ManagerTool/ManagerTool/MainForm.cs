@@ -14,15 +14,22 @@ using System.Configuration;
 namespace ManagerTool {
     public partial class MainForm : Form {
 
-        private BackgroundWorker _bgWorkerRG = new BackgroundWorker();
+        private BackgroundWorker _bgWorkerRG = new BackgroundWorker();  /// Background worker used in the Robot Generation proccess
+        private BackgroundWorker _bgWorkerDbB = new BackgroundWorker();  /// Background worker used in the Database Building proccess
 
         public MainForm() {
             InitializeComponent();
-            // Robot Generation Background worker
-            _bgWorkerRG.DoWork += GenerateRobotPrograms_BackGround;
+            // Background worker Robot Generation
+            _bgWorkerRG.DoWork += BackGround_GenerateRobotPrograms;
             _bgWorkerRG.ProgressChanged += BackGround_RobotGenerationProgressUpdate;
             _bgWorkerRG.RunWorkerCompleted += BackGround_RobotGenerationCompleted;
             _bgWorkerRG.WorkerReportsProgress = true;
+            // Background worker DataBase Building
+            _bgWorkerDbB.DoWork += BackGround_BuildDataBase;
+            _bgWorkerDbB.ProgressChanged += BackGround_DatabaseBuildProgressUpdate;
+            _bgWorkerDbB.RunWorkerCompleted += BackGround_DatabaseBuildCompleted;
+            _bgWorkerDbB.WorkerReportsProgress = true;
+            _bgWorkerDbB.WorkerSupportsCancellation = true;
         }
 
         private void LoadAppConfigValues() {
@@ -31,6 +38,11 @@ namespace ManagerTool {
             numericUpDown_rgRobotCount.Value = Convert.ToDecimal(ConfigurationManager.AppSettings["rgRobotCount"]);
             textBox_rgBaseFileName.Text = ConfigurationManager.AppSettings["rgBaseFileName"];
             textBox_rgOutDir.Text = ConfigurationManager.AppSettings["rgOutDir"];
+            // Database Builder
+            textBox_DbBName.Text = ConfigurationManager.AppSettings["DbBName"];
+            numericUpDown_DbBGeneration.Value = Convert.ToDecimal(ConfigurationManager.AppSettings["DbBGeneration"]);
+            textBox_DbBRobotDir.Text = ConfigurationManager.AppSettings["DbBRobotDir"];
+            checkBox_DbBUseOutputDir.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["DbBUseOutPutDirChecked"]);
 
         }
 
@@ -49,6 +61,7 @@ namespace ManagerTool {
         private void MainForm_Load(object sender, EventArgs e) {
             LoadAppConfigValues();
             // DEBUG
+            /*
             var st = new RobotGenerationStorage("Storage 1", 1);
             for (uint i = 0; i < 100; i++) {
                 BattleResultsSerializble br = new BattleResultsSerializble();
@@ -58,8 +71,8 @@ namespace ManagerTool {
             }
             
             Console.Write(Serializers.Serialize(st));
+            */
             // DEBUG
         }
-
     }
 }
